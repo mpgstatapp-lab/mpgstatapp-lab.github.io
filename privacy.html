@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MPG Stat — Privacy Policy</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #18d94e;
+    --green-dark: #0d2b18;
+    --green-mid: #122b1a;
+    --green-glow: #4ade80;
+    --text: #e8f5ec;
+    --text-muted: #7ecba1;
+    --bg: #080f0a;
+    --border: #1e4d2b;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 48px 48px;
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 80px 24px 60px;
+  }
+
+  .back {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--green);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 40px;
+  }
+
+  .back:hover { color: var(--green-glow); }
+
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 12px;
+  }
+
+  h1 {
+    font-size: clamp(32px, 7vw, 48px);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+
+  h1 span { color: var(--green); }
+
+  .updated {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--border);
+    letter-spacing: 0.08em;
+    margin-bottom: 48px;
+  }
+
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 40px 0;
+  }
+
+  .section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  h2 {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+
+  p {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+
+  .highlight-box {
+    border: 1px solid var(--green);
+    border-radius: 8px;
+    padding: 20px 24px;
+    background: var(--green-mid);
+    margin-bottom: 40px;
+  }
+
+  .highlight-box p {
+    font-size: 15px;
+    color: var(--green-glow);
+    margin: 0;
+    font-weight: 400;
+  }
+
+  section { margin-bottom: 40px; }
+
+  .contact-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px 24px;
+    background: var(--green-mid);
+  }
+
+  .contact-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+
+  .contact-email {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--green-glow);
+    text-decoration: none;
+  }
+
+  .contact-email:hover { color: var(--green); }
+
+  footer {
+    margin-top: 80px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .footer-mono {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--border);
+    letter-spacing: 0.08em;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <a class="back" href="/">← Back</a>
+
+  <p class="eyebrow">Legal</p>
+  <h1>Privacy <span>Policy</span></h1>
+  <p class="updated">Last updated: May 2026</p>
+
+  <div class="highlight-box">
+    <p>MPG Stat does not collect, store, or transmit any personal data. Everything stays on your device.</p>
+  </div>
+
+  <section>
+    <p class="section-label">Overview</p>
+    <p>MPG Stat is a fuel economy tracking app. We built it to be simple, private, and useful. This privacy policy explains what data the app handles and how.</p>
+  </section>
+
+  <div class="divider"></div>
+
+  <section>
+    <p class="section-label">Data collection</p>
+    <h2>We collect nothing</h2>
+    <p>MPG Stat does not collect any personal information. The app has no user accounts, no login, no analytics, and no advertising.</p>
+    <p>All data you enter — fillup records, odometer readings, and calculated statistics — is stored locally on your device using on-device storage. This data never leaves your device and is never transmitted to any server.</p>
+  </section>
+
+  <section>
+    <p class="section-label">Third parties</p>
+    <h2>No third-party sharing</h2>
+    <p>MPG Stat does not share any data with third parties. There are no analytics SDKs, advertising networks, or tracking frameworks included in the app.</p>
+  </section>
+
+  <section>
+    <p class="section-label">Data storage</p>
+    <h2>Your data, your device</h2>
+    <p>All fillup history and statistics are stored locally on your iPhone. If you delete the app, your data is deleted with it. We have no access to your data and cannot recover it on your behalf.</p>
+  </section>
+
+  <section>
+    <p class="section-label">Children</p>
+    <h2>Children's privacy</h2>
+    <p>MPG Stat does not knowingly collect information from anyone, including children under 13. Since we collect no data at all, this is straightforward.</p>
+  </section>
+
+  <section>
+    <p class="section-label">Changes</p>
+    <h2>Policy updates</h2>
+    <p>If we ever change this policy, we will update the date at the top of this page. Any future changes will be reflected here.</p>
+  </section>
+
+  <section>
+    <p class="section-label">Contact</p>
+    <h2>Questions?</h2>
+    <p>If you have any questions about this privacy policy, reach out:</p>
+    <div class="contact-card">
+      <p class="contact-label">Email</p>
+      <a class="contact-email" href="mailto:mpgstatapp@gmail.com">mpgstatapp@gmail.com</a>
+    </div>
+  </section>
+
+  <footer>
+    <span class="footer-mono">© 2026 MPG Stat</span>
+    <span class="footer-mono">mpgstatapp-lab.github.io/privacy.html</span>
+  </footer>
+
+</div>
+</body>
+</html>
