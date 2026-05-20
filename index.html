@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MPG Stat — Support</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #18d94e;
+    --green-dark: #0d2b18;
+    --green-mid: #122b1a;
+    --green-glow: #4ade80;
+    --text: #e8f5ec;
+    --text-muted: #7ecba1;
+    --bg: #080f0a;
+    --border: #1e4d2b;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Grid background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 48px 48px;
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 80px 24px 60px;
+  }
+
+  /* Icon */
+  .icon-wrap {
+    margin-bottom: 32px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .icon-wrap svg {
+    width: 80px;
+    height: 80px;
+    border-radius: 18px;
+    display: block;
+  }
+
+  /* Header */
+  header {
+    margin-bottom: 64px;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 12px;
+  }
+
+  h1 {
+    font-size: clamp(36px, 8vw, 56px);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 16px;
+  }
+
+  h1 span {
+    color: var(--green);
+  }
+
+  .tagline {
+    font-size: 16px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* Divider */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 48px 0;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  /* Sections */
+  section {
+    margin-bottom: 48px;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+
+  .section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  h2 {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+
+  p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+  }
+
+  /* FAQ items */
+  .faq {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 8px;
+    background: var(--green-mid);
+  }
+
+  .faq-q {
+    padding: 16px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+  }
+
+  .faq-q:hover { color: var(--green-glow); }
+
+  .faq-q .arrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 16px;
+    color: var(--green);
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+
+  .faq-a {
+    display: none;
+    padding: 0 20px 16px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+    padding-top: 14px;
+  }
+
+  .faq.open .faq-a { display: block; }
+  .faq.open .arrow { transform: rotate(45deg); }
+
+  /* Contact card */
+  .contact-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px;
+    background: var(--green-mid);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .contact-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--green-dark);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 20px;
+  }
+
+  .contact-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+  }
+
+  .contact-email {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--green-glow);
+    text-decoration: none;
+  }
+
+  .contact-email:hover { color: var(--green); }
+
+  /* Footer */
+  footer {
+    margin-top: 80px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: gap;
+    animation: fadeUp 0.6s 0.4s ease both;
+  }
+
+  .footer-mono {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--border);
+    letter-spacing: 0.08em;
+  }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Icon -->
+  <div class="icon-wrap">
+    <svg width="80" height="80" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <clipPath id="dc">
+          <path d="M512 83C512 83 253 415 253 619C253 769 369 881 512 881C655 881 771 769 771 619C771 415 512 83 512 83Z"/>
+        </clipPath>
+      </defs>
+      <rect width="1024" height="1024" rx="180" fill="#0d2b18"/>
+      <path d="M535 113C535 113 276 443 276 645C276 798 389 915 512 915C635 915 748 798 748 645C748 443 489 113 489 113Z" fill="#1a4a28" opacity="0.35"/>
+      <path d="M512 83C512 83 253 415 253 619C253 769 369 881 512 881C655 881 771 769 771 619C771 415 512 83 512 83Z" fill="#122b1a"/>
+      <g clip-path="url(#dc)">
+        <line x1="253" y1="557" x2="771" y2="557" stroke="#4ade80" stroke-width="4.5" stroke-dasharray="15,9" opacity="0.85"/>
+        <line x1="253" y1="425" x2="771" y2="425" stroke="#f87171" stroke-width="3.6" stroke-dasharray="12,9" opacity="0.8"/>
+        <line x1="253" y1="689" x2="771" y2="689" stroke="#f87171" stroke-width="3.6" stroke-dasharray="12,9" opacity="0.8"/>
+        <polyline points="295,598 434,519 577,300 716,573 763,553" fill="none" stroke="#4ade80" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>
+        <circle cx="295" cy="598" r="16" fill="#4ade80"/>
+        <circle cx="434" cy="519" r="16" fill="#4ade80"/>
+        <circle cx="577" cy="300" r="24" fill="#ef4444" stroke="#ffffff" stroke-width="6"/>
+        <circle cx="716" cy="573" r="16" fill="#4ade80"/>
+        <circle cx="763" cy="553" r="16" fill="#4ade80"/>
+      </g>
+      <path d="M512 83C512 83 253 415 253 619C253 769 369 881 512 881C655 881 771 769 771 619C771 415 512 83 512 83Z" fill="none" stroke="#4ade80" stroke-width="4" opacity="0.85"/>
+    </svg>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <p class="eyebrow">Support</p>
+    <h1>MPG <span>Stat</span></h1>
+    <p class="tagline">Fuel economy tracking for engineers, hypermilers, and data nerds.<br>Built on SPC principles. A little whimsy included.</p>
+  </header>
+
+  <div class="divider"></div>
+
+  <!-- FAQ -->
+  <section>
+    <p class="section-label">FAQ</p>
+
+    <div class="faq">
+      <div class="faq-q">How do I log a fillup? <span class="arrow">+</span></div>
+      <div class="faq-a">Tap the add button on the main screen and enter your odometer reading and gallons filled. MPG Stat calculates your fuel economy automatically and updates your XmR chart.</div>
+    </div>
+
+    <div class="faq">
+      <div class="faq-q">What is an XmR chart? <span class="arrow">+</span></div>
+      <div class="faq-a">An XmR (Individual and Moving Range) chart is a Statistical Process Control tool that plots your individual MPG values alongside their moving range. The natural process limits help you distinguish real changes in fuel economy from normal variation.</div>
+    </div>
+
+    <div class="faq">
+      <div class="faq-q">What are the natural process limits? <span class="arrow">+</span></div>
+      <div class="faq-a">Natural process limits (NPLs) are calculated from your data and represent the expected range of variation for your vehicle. A data point outside the limits is a signal — something has genuinely changed, not just varied randomly.</div>
+    </div>
+
+    <div class="faq">
+      <div class="faq-q">Does MPG Stat collect my data? <span class="arrow">+</span></div>
+      <div class="faq-a">No. MPG Stat stores all your data locally on your device. No accounts, no servers, no data collection. Your fillup history is yours.</div>
+    </div>
+
+    <div class="faq">
+      <div class="faq-q">Can I export my data? <span class="arrow">+</span></div>
+      <div class="faq-a">Have a question about data export or another feature? Reach out via the contact below and we'll help you out.</div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section>
+    <p class="section-label">Contact</p>
+    <h2>Get in touch</h2>
+    <p>Have a question, found a bug, or want to share feedback? We'd love to hear from you.</p>
+    <div class="contact-card">
+      <div class="contact-icon">✉</div>
+      <div>
+        <p class="contact-label">Support email</p>
+        <a class="contact-email" href="mailto:mpgstatapp@gmail.com">mpgstatapp@gmail.com</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <span class="footer-mono">© 2026 MPG Stat</span>
+    <span class="footer-mono">v1.0.0</span>
+  </footer>
+
+</div>
+
+<script>
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      q.parentElement.classList.toggle('open');
+    });
+  });
+</script>
+</body>
+</html>
